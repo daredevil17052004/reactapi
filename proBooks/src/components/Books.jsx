@@ -4,25 +4,33 @@ import axios from 'axios'
 
 const Books = () => {
 
-    let [fet, setfet] = useState();
+    let [datas,setData] = useState()
 
-    useEffect(()=>{
-        axios.get("https://reactnd-books-api.udacity.com/books",{ headers: { 'Authorization': 'whatever-you-want' }})
-        .then((res)=>{
-            console.log(res.data.books);
-            let j = res.data.books
-            setfet(j);
-            console.log(fet);
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-})
+    // axios.get("https://reactnd-books-api.udacity.com/books",{ headers: { 'Authorization': 'whatever-you-want' }})
+    // .then((res)=>{
+    //     console.log(res);
+    //     let j = res.data.books
+    //     console.log(j);
+    //     setData(j)
+    //     console.log(datas);
+    // })
+    // .catch((error)=>{
+    //     console.log(error)
+    // })
+
+    async function getBooks(){
+        try{
+            const response = await axios.get("https://reactnd-books-api.udacity.com/books",{ headers: { 'Authorization': 'whatever-you-want' }})
+            console.log(response)
+        } catch(error){
+            console.log(error);
+        }
+    }
 
     return(
         <div>
-            {
-                fet.map((item,index)=>{
+            {/* {
+                datas.map((item,index)=>{
                     return(
                         <div key={index}>
                             {item.title}
@@ -42,7 +50,7 @@ const Books = () => {
                         </div>
                     )
                 })  
-            }
+            } */}
         </div>
     )
 
